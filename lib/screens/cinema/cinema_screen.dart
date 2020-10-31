@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 
 import 'dart:math' as math;
 
+import 'package:movie_app/screens/cinema/components/cinema_chairs.dart';
+
 class CinemaScreen extends StatefulWidget {
   final Movie movie;
 
@@ -15,11 +17,7 @@ class CinemaScreen extends StatefulWidget {
 }
 
 class _CinemaScreenState extends State<CinemaScreen> {
-  static int row = 10;
-  static int col = 10;
-  String pressed = "false";
-  int totalPeople = 0;
-  var chairs = List.generate(row, (i) => List(col), growable: false);
+
   @override
   Widget build(BuildContext context) {
     const double ticketPrice = 60.0;
@@ -49,41 +47,7 @@ class _CinemaScreenState extends State<CinemaScreen> {
               ),
               Expanded(
                 flex: 5,
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  child: ListView.builder(
-                    itemBuilder: (context, i) => Container(
-                      padding: const EdgeInsets.all(5),
-                      height: 30,
-                      child: ListView.builder(
-                        itemBuilder: (context, j) => GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (chairs[i][j] == null) {
-                                chairs[i][j] = true;
-                                totalPeople++;
-                              }
-                            });
-                          },
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            child: Icon(
-                              Icons.event_seat,
-                              color: chairs[i][j] == true
-                                  ? Colors.green
-                                  : Colors.white,
-                            ),
-                          ),
-                        ),
-                        itemCount: row,
-                        scrollDirection: Axis.horizontal,
-                      ),
-                    ),
-                    itemCount: col,
-                    scrollDirection: Axis.vertical,
-                  ),
-                ),
+                child: CinemaChairs(row: 10,col: 10),
               ),
               Expanded(
                 flex:1,
@@ -110,7 +74,7 @@ class _CinemaScreenState extends State<CinemaScreen> {
                                 fontSize: 25),
                           ),
                           Text(
-                            "${totalPeople * ticketPrice}",
+                            "${10 * ticketPrice}",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
