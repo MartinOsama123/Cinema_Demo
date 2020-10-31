@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/constants.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:flutter/foundation.dart';
+
 import 'dart:math' as math;
 
 class CinemaScreen extends StatefulWidget {
@@ -32,7 +33,7 @@ class _CinemaScreenState extends State<CinemaScreen> {
               Transform(
                 transform: Matrix4.identity()
                   ..setEntry(3, 2, 0.001) // perspective
-                  ..rotateX(50 / 180 * math.pi),
+                  ..rotateX(50 * math.pi / 180),
                 alignment: Alignment.center,
                 child: Hero(
                   tag: 'poster',
@@ -47,6 +48,7 @@ class _CinemaScreenState extends State<CinemaScreen> {
                 ),
               ),
               Expanded(
+                flex: 5,
                 child: Container(
                   padding: const EdgeInsets.all(5),
                   child: ListView.builder(
@@ -83,47 +85,60 @@ class _CinemaScreenState extends State<CinemaScreen> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Total Price:",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25),
-                        ),
-                        Text(
-                          "${totalPeople * ticketPrice}",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        )
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    height: 50,
-                    padding: const EdgeInsets.all(7),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: kSecondaryColor),
-                    child: Text(
-                      "Checkout",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ))
+              Expanded(
+                flex:1,
+                child: Row(children: [
+                  Icon(Icons.event_seat,color: Colors.white,),
+                  Text(" = Available",style: TextStyle(color: Colors.white,fontSize: 15)),
+                  Icon(Icons.event_seat,color: Colors.grey.shade900,),
+                  Text(" = Unavailable",style: TextStyle(color: Colors.white,fontSize: 15))
                 ],
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly),
               ),
+           Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Total Price:",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25),
+                          ),
+                          Text(
+                            "${totalPeople * ticketPrice}",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                        child: Container(
+                      height: 50,
+                      padding: const EdgeInsets.all(7),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: kSecondaryColor),
+                      child: Text(
+                        "Checkout",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ))
+                  ],
+                ),
+
+
             ],
           ),
+
           SafeArea(
             child: BackButton(),
           ),
