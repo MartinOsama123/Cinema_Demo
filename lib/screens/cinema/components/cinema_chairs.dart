@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
 class CinemaChairs extends StatefulWidget {
-  final  int col;
-  final int row;
+  int col;
+  int row;
+  var chairs;
 
-  const CinemaChairs({Key key, this.col, this.row}) : super(key: key);
+  CinemaChairs(int col, int row) {
+    this.col = col;
+    this.row = row;
+    this.chairs = List.generate(row, (i) => List(col), growable: false);
+  }
   @override
   _CinemaChairsState createState() => _CinemaChairsState();
 }
 
 class _CinemaChairsState extends State<CinemaChairs> {
-
   int totalPeople = 0;
 
-  var chairs;
   @override
   Widget build(BuildContext context) {
-    chairs =  List.generate(widget.row, (i) => List(widget.col), growable: false);
-
     return Container(
       padding: const EdgeInsets.all(5),
       child: ListView.builder(
@@ -27,9 +28,11 @@ class _CinemaChairsState extends State<CinemaChairs> {
           child: ListView.builder(
             itemBuilder: (context, j) => GestureDetector(
               onTap: () {
+                print('tabbed');
                 setState(() {
-                  if (chairs[i][j] == null) {
-                    chairs[i][j] = true;
+                  if (widget.chairs[i][j] == null) {
+                    widget.chairs[i][j] = true;
+                    print(widget.chairs[i][j]);
                     totalPeople++;
                   }
                 });
@@ -40,9 +43,8 @@ class _CinemaChairsState extends State<CinemaChairs> {
                 child: Icon(
                   Icons.event_seat,
                   size: 20,
-                  color: chairs[i][j] == true
-                      ? Colors.green
-                      : Colors.white,
+                  color:
+                      widget.chairs[i][j] == true ? Colors.green : Colors.white,
                 ),
               ),
             ),
@@ -55,5 +57,4 @@ class _CinemaChairsState extends State<CinemaChairs> {
       ),
     );
   }
-  
 }
