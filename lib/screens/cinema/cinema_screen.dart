@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'dart:math' as math;
 
 import 'package:movie_app/screens/cinema/components/cinema_chairs.dart';
+import 'package:movie_app/screens/ticket/ticket_screen.dart';
 
 class CinemaScreen extends StatefulWidget {
   final Movie movie;
@@ -90,16 +91,24 @@ class _CinemaScreenState extends State<CinemaScreen> {
                     ),
                   ),
                   Expanded(
-                      child: Container(
-                    height: 50,
-                    padding: const EdgeInsets.all(7),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: kSecondaryColor),
-                    child: Text(
-                      "Checkout",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TicketScreen()),
+                      );
+                    },
+                    child: Container(
+                      height: 50,
+                      padding: const EdgeInsets.all(7),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: kSecondaryColor),
+                      child: Text(
+                        "Checkout",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
                     ),
                   ))
                 ],
