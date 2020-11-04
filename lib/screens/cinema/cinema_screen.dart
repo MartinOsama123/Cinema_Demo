@@ -33,7 +33,7 @@ class _CinemaScreenState extends State<CinemaScreen> {
                   ..rotateX(50 * math.pi / 180),
                 alignment: Alignment.center,
                 child: Hero(
-                  tag: 'poster',
+                  tag: "poster",
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
