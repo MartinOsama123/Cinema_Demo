@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/screens/cinema/components/people_data.dart';
+import 'package:provider/provider.dart';
 
 class CinemaChairs extends StatefulWidget {
   int col;
@@ -15,10 +17,9 @@ class CinemaChairs extends StatefulWidget {
 }
 
 class _CinemaChairsState extends State<CinemaChairs> {
-  int totalPeople = 0;
-
   @override
   Widget build(BuildContext context) {
+    var numOfPeople = Provider.of<PeopleData>(context);
     return Container(
       padding: const EdgeInsets.all(5),
       child: ListView.builder(
@@ -33,9 +34,10 @@ class _CinemaChairsState extends State<CinemaChairs> {
                   if (widget.chairs[i][j] == null) {
                     widget.chairs[i][j] = true;
                     print(widget.chairs[i][j]);
-                    totalPeople++;
                   }
                 });
+
+                numOfPeople.numberOfPeople++;
               },
               child: Container(
                 width: 40,

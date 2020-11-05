@@ -24,7 +24,7 @@ class _TicketBackState extends State<TicketBack> {
         child: Card(
           elevation: 1,
           child: Container(
-            height: 250,
+            height: 270,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 gradient: RadialGradient(colors: [

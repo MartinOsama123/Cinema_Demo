@@ -20,7 +20,7 @@ class _TicketFrontState extends State<TicketFront> {
       child: Card(
         elevation: 1,
         child: Container(
-          height: 250,
+          height: 270,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15), color: Colors.black),
           child: Stack(
