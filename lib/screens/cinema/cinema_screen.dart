@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:movie_app/models/movie.dart';
 import 'package:flutter/foundation.dart';
+import 'package:movie_app/screens/cinema/components/chairs_state_info.dart';
+import 'package:movie_app/screens/cinema/components/cinema_3d_screen.dart';
 import 'package:movie_app/screens/cinema/components/payment_info.dart';
 import 'package:movie_app/screens/cinema/components/people_data.dart';
 import 'package:provider/provider.dart';
@@ -29,22 +31,8 @@ class _CinemaScreenState extends State<CinemaScreen> {
           children: [
             Column(
               children: [
-                Transform(
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.001) // perspective
-                    ..rotateX(50 * math.pi / 180),
-                  alignment: Alignment.center,
-                  child: Hero(
-                    tag: "poster",
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                              image: AssetImage(widget.movie.poster),
-                              fit: BoxFit.fill)),
-                      height: MediaQuery.of(context).size.height * 0.40,
-                    ),
-                  ),
+                Cinema3DScreen(
+                  movie: widget.movie,
                 ),
                 Expanded(
                   flex: 5,
@@ -52,20 +40,7 @@ class _CinemaScreenState extends State<CinemaScreen> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Row(children: [
-                    Icon(
-                      Icons.event_seat,
-                      color: Colors.white,
-                    ),
-                    Text(" = Available",
-                        style: TextStyle(color: Colors.white, fontSize: 15)),
-                    Icon(
-                      Icons.event_seat,
-                      color: Colors.grey.shade900,
-                    ),
-                    Text(" = Unavailable",
-                        style: TextStyle(color: Colors.white, fontSize: 15))
-                  ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                  child: ChairsStateInfo(),
                 ),
                 PaymentInfo(),
               ],
